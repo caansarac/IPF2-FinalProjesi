@@ -6,7 +6,7 @@ IPF2 klasörü içinde Api ve Backend yapısı,
  IP2Final klasörü içinde de Frontend yapısı bulunmakta.
  
 Veritabanı şeması <p>
-![image](https://github.com/caansarac/IPF2-FinalProjesi/assets/90605502/54283bb5-3234-47c8-b68f-244c1d652962)
+![image](https://i.ibb.co/gDDgzQV/resim-2023-06-16-213840052.png)
 
  API Yapısı <p>
-![image](https://github.com/caansarac/IPF2-FinalProjesi/assets/90605502/073bbc32-faf6-4daa-98a9-9f16788e0f97)
+![image](https://i.ibb.co/xSMRnxN/image.png)
