@@ -1,0 +1,67 @@
+<div class="container">
+  <p>&nbsp;</p>
+  <h1>Ürünler</h1>
+  <button mat-fab matTooltip="Ürün Ekle" (click)="Ekle()">
+    <mat-icon aria-label="label">add_shopping_cart</mat-icon>
+  </button> &nbsp;
+<p>&nbsp;</p>
+
+<mat-form-field appearance="outline">
+  <input matInput placeholder="Aranacak değeri girin." (keyup)="Filtrele($event)">
+</mat-form-field>
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort >
+    <ng-container matColumnDef="urunResim">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ürün Resmi
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit">
+        <img [src]="apiServis.siteUrl+'Dosyalar/'+kayit.urunResim" style="width: 100px;"
+        matTooltip="Resim güncellemek için tıklayın" (click)="ResimGuncelle(kayit)"/>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="urunAdi">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ürün Adı
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.urunAdi}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="urunKatAdi">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ürün Kategori Adı
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.urunKatAdi}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="urunFiyat">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ürün Fiyatı
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.urunFiyat}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="urunSaticisi">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ürün Satıcısı
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.urunSaticisi}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="urunKatSayisi">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Ürünün Kategori Sayısı
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.urunKatSayisi}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="islemler">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> İşlemler
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit">
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="primary" matTooltip="Kategori Listele" [routerLink]="['/kategorilistele',kayit.urunId ]">list</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="accent" matTooltip="Ürünü Düzenle" (click)="Duzenle(kayit)">edit</mat-icon>
+        </button>
+        <button mat-icon-button>
+          <mat-icon aria-label="label" color="warn"(click)="Sil(kayit)" matTooltip="Ürünü Sil">delete</mat-icon>
+        </button></mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator
+        [pageSizeOptions]="[5, 15, 25, 50]" showFirstLastButtons>
+  </mat-paginator>
+</div>

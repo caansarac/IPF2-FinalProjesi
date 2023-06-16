@@ -1,0 +1,17 @@
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <span>Resim Güncelle</span>
+</mat-toolbar>
+<div class="container">
+<div *ngIf = "secUrun">
+  <h3><b>Ürün Adı:</b> {{secUrun.urunAdi}} <b>Kategorisi</b> {{secUrun.urunKatAdi}}</h3>
+  <img [src]="apiServis.siteUrl+ '/Dosyalar/'+ secUrun.urunResim" style="width: 300px"/>
+</div>
+
+  <img [src]="secilenResim" *ngIf="secilenResim" style="width: 300px"/>
+  <p>&nbsp;</p>
+  <input type="file" hidden="true" onclick="this.value = null" #resim (change)="ResimSec($event)">
+  <button mat-raised-button color="primary" (click)="resim.click()">Resim Seç</button>&nbsp;
+
+  <button mat-raised-button color="primary" (click)="resimDialogRef.close(urunResim)">Kaydet</button>&nbsp;
+  <button mat-raised-button color="warn" (click)="resimDialogRef.close()">İptal</button>
+</div>

@@ -1,0 +1,44 @@
+<div class="container">
+  <h1>Ürünün bulunduğu kategoriler</h1>
+  <h3><b>Ürün Adı</b> {{secUrun?.urunAdi}}</h3>
+  <h3><b>Ürün ID:</b> {{secUrun?.urunId}}</h3>
+
+  <button mat-fab color="primary" matTooltip="Kategori Listesi" [routerLink]="['/urun']">
+    <mat-icon aria-label="label">arrow_back</mat-icon>
+  </button>
+<p>&nbsp;</p>
+  <mat-form-field appearance="outline" style="width: 50%">
+    <mat-label>Kategori Seçiniz</mat-label>
+      <mat-select placeholder="Kategori Seçiniz" (selectionChange)="KategoriSec($event.value)">
+    <mat-option [value]="kategori.katId" *ngFor="let kategori of kategoriler">{{kategori.katAdi}}</mat-option>
+  </mat-select>
+</mat-form-field>
+&nbsp;&nbsp; <button mat-fab color="primary" matToolTip="Kategori Ekle" (click)="Kaydet()">
+  <mat-icon aria-label="label">add</mat-icon>
+</button>
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="katAdi">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Kategori Adı
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.katBilgi.katAdi}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="katId" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header > Kategori Id
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit"> {{kayit.katBilgi.katId}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="islemler" >
+      <mat-header-cell *matHeaderCellDef mat-sort-header > İşlemler
+      </mat-header-cell>
+      <mat-cell *matCellDef="let kayit" >
+<button mat-icon-button color="warn" matToolTip="Kategori kaydını sil" (click)="Sil(kayit)">
+  <mat-icon aria-label="label">delete</mat-icon>
+</button></mat-cell>
+</ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator
+  [pageSizeOptions]="[2, 10, 50]" showFirstLastButtons>
+</mat-paginator>
+</div>
